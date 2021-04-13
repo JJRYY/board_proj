@@ -3,11 +3,10 @@ package board_proj.dao;
 import static org.junit.Assert.fail;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -33,7 +32,7 @@ public class BoardDaoTest {
 	}
 	
 	@Test
-	public void testNextBoardNum() {
+	public void test01NextBoardNum() {
 		System.out.println("testNextBoardNum");
 		int res = dao.nextBoardNum();
 		Assert.assertNotEquals(0, res);
@@ -46,8 +45,16 @@ public class BoardDaoTest {
 	}
 
 	@Test
-	public void testSelectArticleList() {
-		fail("Not yet implemented");
+	public void test03SelectArticleList() {
+		System.out.println("testSelectArticleList");
+		int page = 1;
+		int limit = 10;
+		ArrayList<BoardDTO> list = dao.selectArticleList(page, limit);
+		Assert.assertNotNull(list);
+		for (BoardDTO b : list) {
+			System.out.println(b);
+		}
+//		list.parallelStream().forEach(System.out::println);
 	}
 
 	@Test
@@ -56,19 +63,14 @@ public class BoardDaoTest {
 	}
 
 	@Test
-	public void testInsertArticle() {
+	public void test02InsertArticle() {
 		System.out.println("testInsertArticle");
-		BoardDTO article = new BoardDTO(dao.nextBoardNum(), 
+		BoardDTO article = new BoardDTO( 
 				"김상건", 
 				"1234", 
 				"5시 퇴근 가능?", 
 				"절레절레", 
-				"test.txt", 
-				0, 
-				0, 
-				0, 
-				0, 
-				null);
+				"test.txt");
 		int res = dao.insertArticle(article);
 		Assert.assertEquals(1, res);
 	}
