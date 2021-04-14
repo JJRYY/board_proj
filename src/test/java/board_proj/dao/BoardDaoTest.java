@@ -36,12 +36,15 @@ public class BoardDaoTest {
 		System.out.println("testNextBoardNum");
 		int res = dao.nextBoardNum();
 		Assert.assertNotEquals(0, res);
-		System.out.printf("next Number >> " + res);
+		System.out.println("next Number >> " + res);
 	}
 	
 	@Test
-	public void testSelectListCount() {
-		fail("Not yet implemented");
+	public void test02SelectListCount() {
+		System.out.println("testSelectListCount");
+		int res = dao.selectListCount();
+		Assert.assertNotEquals(-1, res);
+		System.out.println("selectListCount >> " + res);
 	}
 
 	@Test
@@ -58,12 +61,7 @@ public class BoardDaoTest {
 	}
 
 	@Test
-	public void testSelectArticle() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void test02InsertArticle() {
+	public void test04InsertArticle() {
 		System.out.println("testInsertArticle");
 		BoardDTO article = new BoardDTO( 
 				"김상건", 
@@ -73,6 +71,11 @@ public class BoardDaoTest {
 				"test.txt");
 		int res = dao.insertArticle(article);
 		Assert.assertEquals(1, res);
+	}
+	
+	@Test
+	public void test05SelectArticle() {
+		fail("Not yet implemented");
 	}
 
 	@Test

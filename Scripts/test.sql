@@ -12,6 +12,9 @@ VALUES(1, '김상건', '1111', '마칠시간', '5시', 'test.txt', 0);
 
 delete from board where BOARD_NUM = 3;
 
+-- listcount
+select count(*) from board;
+
 -- list 페이징
 /*
  *  [1][2][3]
