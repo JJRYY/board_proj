@@ -28,7 +28,10 @@
 			<c:forEach var="board" items="${articleList }">
 				<tr>
 					<td>${board.board_num }</td>
-					<td>${board.board_subject }</td>
+					<td>
+					<a href="boardDetail.do?board_num=${board.board_num }&page=${pageInfo.page }">
+					${board.board_subject }</a>
+					</td>
 					<td>${board.board_name }</td>
 					<td>${board.board_date }</td>
 					<td>${board.board_readcount }</td>

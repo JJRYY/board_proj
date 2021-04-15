@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
 import board_proj.dto.ActionForward;
 import board_proj.dto.BoardDTO;
 import board_proj.dto.PageInfo;

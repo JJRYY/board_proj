@@ -2,6 +2,8 @@ SELECT max(BOARD_NUM) FROM board;
 
 select * from board;
 
+select * from board where BOARD_NUM = 20;
+
 INSERT INTO web_gradle_erp.board
 (BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE)
 VALUES(1, '김상건', '1111', '마칠시간', '5시', 'test.txt', 0, 0, 0, 0, '2021-03-03');
@@ -29,3 +31,7 @@ select BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FI
 from board
 order by BOARD_RE_REF desc, BOARD_RE_SEQ asc 
 limit 10, 10 ;
+
+
+-- 조회수(read count) + 1 시키기
+update board set BOARD_READCOUNT = BOARD_READCOUNT + 1 where BOARD_NUM = 35;

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board_proj.action.Action;
+import board_proj.action.BoardDetailAction;
 import board_proj.action.BoardListAction;
+import board_proj.action.BoardReplyFormAction;
 import board_proj.action.BoardWriteProAction;
 import board_proj.dto.ActionForward;
 
@@ -51,6 +53,20 @@ public class BoardFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/boardList.do")) {
 			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardDetail.do")) {
+			action = new BoardDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardReplyForm.do")) {
+			action = new BoardReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

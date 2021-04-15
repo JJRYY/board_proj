@@ -20,7 +20,7 @@ import board_proj.dto.BoardDTO;
 public class BoardDaoTest {
 	private static Connection con = JdbcUtil.getConnection();
 	private static BoardDaoImpl dao = BoardDaoImpl.getInstance();
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		dao.setCon(con);
@@ -30,7 +30,7 @@ public class BoardDaoTest {
 	public void tearDown() throws Exception {
 		System.out.println();
 	}
-	
+
 	@Test
 	public void test01NextBoardNum() {
 		System.out.println("testNextBoardNum");
@@ -38,7 +38,7 @@ public class BoardDaoTest {
 		Assert.assertNotEquals(0, res);
 		System.out.println("next Number >> " + res);
 	}
-	
+
 	@Test
 	public void test02SelectListCount() {
 		System.out.println("testSelectListCount");
@@ -63,42 +63,45 @@ public class BoardDaoTest {
 	@Test
 	public void test04InsertArticle() {
 		System.out.println("testInsertArticle");
-		BoardDTO article = new BoardDTO( 
-				"김상건", 
-				"1234", 
-				"5시 퇴근 가능?", 
-				"절레절레", 
-				"test.txt");
+		BoardDTO article = new BoardDTO("김상건", "1234", "5시 퇴근 가능?", "절레절레", "test.txt");
 		int res = dao.insertArticle(article);
 		Assert.assertEquals(1, res);
 	}
-	
+
 	@Test
 	public void test05SelectArticle() {
-		fail("Not yet implemented");
+		System.out.println("testSelectArticle");
+		int board_num = 20;
+		BoardDTO article = dao.selectArticle(board_num);
+		Assert.assertNotNull(article);
+		System.out.println(article);
 	}
 
 	@Test
+	public void test06UpdateReadCount() {
+		System.out.println("testUpdateReadCount");
+		int board_num = 35;
+		int res = dao.updateReadCount(board_num);
+		Assert.assertEquals(1, res);
+		System.out.println(dao.selectArticle(board_num));
+	}
+
+//	@Test
 	public void testInsertReplyArticle() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+//	@Test
 	public void testUpdateArticle() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+//	@Test
 	public void testDeleteArticle() {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testUpdateReadCount() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+//	@Test
 	public void testIsArticleBoardWriter() {
 		fail("Not yet implemented");
 	}

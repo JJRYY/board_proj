@@ -83,7 +83,18 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public BoardDTO selectArticle(int board_num) {
-		// TODO Auto-generated method stub
+		String sql = "select BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE," + 
+				" BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE from board where BOARD_NUM = ?";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, board_num);
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					return getBoardDTO(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -129,7 +140,12 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int updateReadCount(int board_num) {
-		// TODO Auto-generated method stub
+		String sql = "update board set BOARD_READCOUNT = BOARD_READCOUNT + 1 where BOARD_NUM = " + board_num;
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
