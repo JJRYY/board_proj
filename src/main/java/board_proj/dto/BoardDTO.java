@@ -18,6 +18,10 @@ public class BoardDTO {
 	public BoardDTO() {
 	}
 
+	public BoardDTO(int board_num) {
+		this.board_num = board_num;
+	}
+
 	public BoardDTO(String board_name, String board_pass, String board_subject, String board_content,
 			String board_file) {
 		this.board_name = board_name;

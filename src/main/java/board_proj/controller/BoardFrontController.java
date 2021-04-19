@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board_proj.action.Action;
+import board_proj.action.BoardDeleteProAction;
 import board_proj.action.BoardDetailAction;
+import board_proj.action.BoardFileDownAction;
 import board_proj.action.BoardListAction;
 import board_proj.action.BoardReplyFormAction;
 import board_proj.action.BoardWriteProAction;
@@ -67,6 +69,33 @@ public class BoardFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/boardReplyForm.do")) {
 			action = new BoardReplyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardDeleteForm.do")) {
+			//board_num=34&page=2
+			String nowPage = request.getParameter("page");
+			request.setAttribute("page", nowPage);
+			
+			int board_num = Integer.parseInt(request.getParameter("board_num"));
+			request.setAttribute("board_num", board_num);
+			
+			System.out.println("nowPage >> " + nowPage + ", board_num >> " + board_num);
+			
+			forward = new ActionForward();
+			forward.setPath("/board/qna_board_delete.jsp");
+		} else if(command.equals("/boardDeletePro.do")) {
+			//boardDeletePro.do?board_num=34&page=2&BOARD_PASS=1234
+			action = new BoardDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardFileDownPro.do")) {
+			action = new BoardFileDownAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

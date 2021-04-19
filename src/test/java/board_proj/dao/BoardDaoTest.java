@@ -66,6 +66,7 @@ public class BoardDaoTest {
 		BoardDTO article = new BoardDTO("김상건", "1234", "5시 퇴근 가능?", "절레절레", "test.txt");
 		int res = dao.insertArticle(article);
 		Assert.assertEquals(1, res);
+		System.out.println("res >> " + res);
 	}
 
 	@Test
@@ -85,6 +86,26 @@ public class BoardDaoTest {
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectArticle(board_num));
 	}
+	
+	@Test
+	public void test07IsArticleBoardWriter() {
+		System.out.println("testIsArticleBoardWriter");
+		int board_num = 22;
+		String pass = "1234";
+		boolean res = dao.isArticleBoardWriter(board_num, pass);
+		Assert.assertEquals(true, res);
+		System.out.println("res >> " + res);
+	}
+	
+	@Test
+	public void test08DeleteArticle() {
+		System.out.println("testDeleteArticle");
+		int board_num = dao.nextBoardNum() - 1;
+		BoardDTO delArticle = new BoardDTO(board_num);
+		int res = dao.deleteArticle(delArticle);
+		Assert.assertEquals(1, res);
+		System.out.println("res >> " + res);
+	}
 
 //	@Test
 	public void testInsertReplyArticle() {
@@ -93,16 +114,6 @@ public class BoardDaoTest {
 
 //	@Test
 	public void testUpdateArticle() {
-		fail("Not yet implemented");
-	}
-
-//	@Test
-	public void testDeleteArticle() {
-		fail("Not yet implemented");
-	}
-
-//	@Test
-	public void testIsArticleBoardWriter() {
 		fail("Not yet implemented");
 	}
 

@@ -134,7 +134,13 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int deleteArticle(BoardDTO article) {
-		// TODO Auto-generated method stub
+		String sql = "delete from board where BOARD_NUM = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, article.getBoard_num());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -151,7 +157,18 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public boolean isArticleBoardWriter(int board_num, String pass) {
-		// TODO Auto-generated method stub
+		String sql = "select 1 from board where BOARD_NUM = ? and BOARD_PASS = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, board_num);
+			pstmt.setString(2, pass);
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
