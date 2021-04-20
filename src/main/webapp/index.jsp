@@ -10,6 +10,7 @@
 <body>
 Hello<br>
 <%=JndiDS.getConnection() %><br>
-<a href="boardWriteForm.do">게시판 글쓰기</a>
+<a href="boardWriteForm.do">게시판 글쓰기</a><br>
+<a href="boardList.do?page=1">[목록]</a>
 </body>
 </html>

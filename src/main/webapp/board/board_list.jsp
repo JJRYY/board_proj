@@ -8,61 +8,6 @@
 <meta charset="UTF-8">
 <title>MVC 게시판</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/list.css" >
-<style>
-#registForm{
-	width: 500px;
-	height: 600px;
-	border: 1px solid red;
-	margin: auto;
-}
-
-h2 {
-	text-align: center;
-}
-
-h4 {
-	text-align: center;
-}
-
-table {
-	margin: auto;
-	width: 800px;
-	text-align: center;
-	border-collapse: collapse;
-}
-
-td {
-	border: 1px solid #d9d9d9;
-}
-
-span {
-	color: red;
-}
-#tr_top {
-	border-top: 2px solid red;
-	border-bottom: 2px solid red;
-	background: #f2f2f2;
-	text-align: center;
-}
-
-#listForm {
-	margin: auto;
-	width: 80%;
-	height: 400px;	
-}
-
-#pageList {
-	margin: auto;
-	width: 500px;
-	text-align: center;
-}
-
-#emptyArea {
-	margin: auto;
-	width: 500px;
-	text-align: center;
-}
-</style>
 </head>
 <body>
 <%-- ${articleList } --%>

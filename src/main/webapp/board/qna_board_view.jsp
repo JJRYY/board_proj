@@ -27,7 +27,7 @@ ${article } --%>
 	</section>
 	<section id="commandList">
 		<a href="boardReplyForm.do?board_num=${article.board_num }&page=${page}">[답변]</a>
-		<a href="boardModifyForm.do?board_num=${article.board_num }">[수정]</a>
+		<a href="boardModifyForm.do?board_num=${article.board_num }&page=${page}">[수정]</a>
 		<a href="boardDeleteForm.do?board_num=${article.board_num }&page=${page}">[삭제]</a>
 		<a href="boardList.do?page=${page}">[목록]</a>
 	</section>

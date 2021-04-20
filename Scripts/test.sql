@@ -42,3 +42,6 @@ delete from board where BOARD_NUM = 34;
 
 -- 글 번호 & 비번 맞는지 확인
 select 1 from board where BOARD_NUM = 25 and BOARD_PASS = '1234';
+
+-- 글 수정
+update board set BOARD_SUBJECT = '퇴근하고싶다', BOARD_CONTENT = '그런데 안되겠지' where BOARD_NUM = 55;

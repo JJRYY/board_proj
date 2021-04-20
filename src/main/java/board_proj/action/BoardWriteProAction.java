@@ -17,6 +17,7 @@ public class BoardWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
 		
 		String realFolder = "";
 		String saveFolder = "/boardUpload";
@@ -31,7 +32,9 @@ public class BoardWriteProAction implements Action {
 		boardDTO.setBoard_name(multi.getParameter("BOARD_NAME"));
 		boardDTO.setBoard_pass(multi.getParameter("BOARD_PASS"));
 		boardDTO.setBoard_subject(multi.getParameter("BOARD_SUBJECT"));
-		boardDTO.setBoard_content(multi.getParameter("BOARD_CONTENT"));
+		String content = multi.getParameter("BOARD_CONTENT");
+		String contentSubs = content.replace("\r\n", "<br>");
+		boardDTO.setBoard_content(contentSubs);
 		boardDTO.setBoard_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
 		System.out.println("realFolder >> " + realFolder);
 		System.out.println("boardDTO >> " + boardDTO);

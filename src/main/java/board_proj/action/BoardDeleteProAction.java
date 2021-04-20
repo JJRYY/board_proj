@@ -46,6 +46,7 @@ public class BoardDeleteProAction implements Action {
 	}
 
 	private void sendMessage(HttpServletResponse response, String msg) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('" + msg + "');");
