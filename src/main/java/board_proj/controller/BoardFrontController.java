@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board_proj.action.Action;
+import board_proj.action.BoardDeleteFormAction;
 import board_proj.action.BoardDeleteProAction;
 import board_proj.action.BoardDetailAction;
 import board_proj.action.BoardFileDownAction;
@@ -19,6 +20,7 @@ import board_proj.action.BoardModifyProAction;
 import board_proj.action.BoardReplyFormAction;
 import board_proj.action.BoardReplyProAction;
 import board_proj.action.BoardWriteProAction;
+import board_proj.action.BoardWriteFormAction;
 import board_proj.dto.ActionForward;
 
 @WebServlet("*.do")
@@ -44,96 +46,47 @@ public class BoardFrontController extends HttpServlet {
 		
 		ActionForward forward = null;
 		Action action = null;
-		
-		if (command.equals("/boardWriteForm.do")) {
-//			request.getRequestDispatcher(forward.getPath()).forward(request, response);
-			forward = new ActionForward();
-			forward.setPath("/board/qna_board_write.jsp");
-		} else if(command.equals("/boardWritePro.do")) {
-			action = new BoardWriteProAction();
-			try {
+		try {
+			if (command.equals("/boardWriteForm.do")) {
+				action = new BoardWriteFormAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardList.do")) {
-			action = new BoardListAction();
-			try {
+			} else if(command.equals("/boardWritePro.do")) {
+				action = new BoardWriteProAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardDetail.do")) {
-			action = new BoardDetailAction();
-			try {
+			} else if(command.equals("/boardList.do")) {
+				action = new BoardListAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardReplyForm.do")) {
-			action = new BoardReplyFormAction();
-			try {
+			} else if(command.equals("/boardDetail.do")) {
+				action = new BoardDetailAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardDeleteForm.do")) {
-			//board_num=34&page=2
-			String nowPage = request.getParameter("page");
-			request.setAttribute("page", nowPage);
-			
-			int board_num = Integer.parseInt(request.getParameter("board_num"));
-			request.setAttribute("board_num", board_num);
-			
-			System.out.println("nowPage >> " + nowPage + ", board_num >> " + board_num);
-			
-			forward = new ActionForward();
-			forward.setPath("/board/qna_board_delete.jsp");
-		} else if(command.equals("/boardDeletePro.do")) {
-			//boardDeletePro.do?board_num=34&page=2&BOARD_PASS=1234
-			action = new BoardDeleteProAction();
-			try {
+			} else if(command.equals("/boardReplyForm.do")) {
+				action = new BoardReplyFormAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardFileDownPro.do")) {
-			action = new BoardFileDownAction();
-			try {
+			} else if(command.equals("/boardDeleteForm.do")) {
+				action = new BoardDeleteFormAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardModifyForm.do")) {
-			action = new BoardModifyFormAction();
-			try {
+			} else if(command.equals("/boardDeletePro.do")) {
+				action = new BoardDeleteProAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/boardModifyPro.do")) {
-			action = new BoardModifyProAction();
-			try {
+			} else if(command.equals("/boardFileDownPro.do")) {
+				action = new BoardFileDownAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/boardReplyForm.do")) {
-			action = new BoardReplyFormAction();
-			try {
+			} else if(command.equals("/boardModifyForm.do")) {
+				action = new BoardModifyFormAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/boardReplyPro.do")) {
-			action = new BoardReplyProAction();
-			try {
+			} else if(command.equals("/boardModifyPro.do")) {
+				action = new BoardModifyProAction();
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} else if (command.equals("/boardReplyForm.do")) {
+				action = new BoardReplyFormAction();
+				forward = action.execute(request, response);
+			} else if (command.equals("/boardReplyPro.do")) {
+				action = new BoardReplyProAction();
+				forward = action.execute(request, response);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
 		
 		
 		if (forward != null) {
