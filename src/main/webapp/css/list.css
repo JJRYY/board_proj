@@ -17,7 +17,7 @@ h4 {
 
 table {
 	margin: auto;
-	width: 800px;
+	width: 1000px;
 	text-align: center;
 	border-collapse: collapse;
 }
@@ -52,4 +52,13 @@ span {
 	margin: auto;
 	width: 500px;
 	text-align: center;
+}
+
+#subject {
+	text-align: left;
+	padding-left: 10px;
+}
+
+.subject {
+	width: 650px;
 }

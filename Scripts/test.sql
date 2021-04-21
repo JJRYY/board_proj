@@ -45,3 +45,9 @@ select 1 from board where BOARD_NUM = 25 and BOARD_PASS = '1234';
 
 -- 글 수정
 update board set BOARD_SUBJECT = '퇴근하고싶다', BOARD_CONTENT = '그런데 안되겠지' where BOARD_NUM = 55;
+
+-- 글에 대한 답변
+update board set BOARD_RE_SEQ = BOARD_RE_SEQ + 1 where BOARD_RE_REF = 20 and BOARD_RE_SEQ  > 0;
+
+select * from board where BOARD_RE_REF = 23;
+
